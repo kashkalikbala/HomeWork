@@ -1,0 +1,38 @@
+package CIF_am5827_HW2.util;
+
+import java.util.ArrayList;
+
+/**
+ * A statistic collector to store a double array and carry the mean of standard deviation of this array.
+ * @author Alim Mijit
+ *
+ */
+public class StatCollector {
+	
+	private ArrayList<Double> array;
+	private double mean = 0;
+	private double stdVar = 0;
+	private double meanSq = 0;
+
+	public StatCollector() {
+		this.array = new ArrayList<Double>();
+	}
+	
+	public void add(double x) {
+		int n = array.size()+1;
+		array.add(new Double(x));
+		mean =(n-1.0)/n*mean + x/n;
+		meanSq =(n-1.0)/n*meanSq + x*x/n;
+		stdVar = Math.sqrt(meanSq-mean*mean);
+	}
+
+	public double getMean() {
+		return mean;
+	}
+
+
+	public double getStdVar() {
+		return stdVar;
+	}
+
+}
