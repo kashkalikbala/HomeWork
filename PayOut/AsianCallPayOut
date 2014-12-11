@@ -1,0 +1,45 @@
+package CIF_am5827_HW2.PayOut;
+
+import CIF_am5827_HW2.StockPath.StockPath;
+import CIF_am5827_HW2.util.Option;
+import CIF_am5827_HW2.util.PriceNode;
+
+import java.util.List;
+
+
+public class AsianCallPayOut implements PayOut {
+	
+	
+	private double strikePrice;
+	
+	
+	public double getStrickPrice() {
+		return strikePrice;
+	}
+
+	
+	public void setStrickPrice(double strickPrice) {
+		this.strikePrice = strickPrice;
+	}
+
+	
+	public AsianCallPayOut(double strickPrice) {
+		this.strikePrice = strickPrice;
+	}
+	public AsianCallPayOut(Option option) {
+		this.strikePrice = option.getStrickPrice();
+	}
+	
+	
+	@Override 
+	public double getPayout(StockPath path) {
+		List<PriceNode> price =  path.getPrices();
+
+		double ave = price.get(0).getPrice();  // sum of all the elements
+	    for (int i=1; i<price.size(); i++) {
+	         ave = i/(i+1.0)*ave + price.get(i).getPrice()/(i+1.0);
+	    }
+		return Math.max(ave- strikePrice,0);
+	}
+
+}
