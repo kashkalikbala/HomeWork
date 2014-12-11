@@ -1,0 +1,44 @@
+package CIF_am5827_HW2.util;
+
+/**
+ * This class ProgressBar comes from the website: http://www.oschina.net/code/snippet_187385_6496
+ * 显示进度条(参数：当前点、结束点、进度条长度)
+ * example:
+ * 		System.out.println(ProgressBar.showBarByPoint(30, 100, 20));
+ * result:
+ * 		[----->              ] 30.00%
+ * @author gondi
+ *
+ */
+public class ProgressBar {
+	
+
+	public static String showBarByPoint(double currentPoint, double finishPoint, int barLength) {
+		double rate = currentPoint / finishPoint;
+		int barSign = (int) (rate * barLength);
+		return makeBarBySignAndLength(barSign, barLength) + String.format(" %.2f%%", rate * 100);
+	}
+	
+	/**
+	 * @param barSign 
+	 * @param barLength 
+	 * @return 
+	 */
+	private static String makeBarBySignAndLength(int barSign, int barLength) {
+		StringBuilder bar = new StringBuilder();
+		bar.append("[");
+		for (int i=1; i<=barLength; i++) {
+			if (i < barSign) {
+				bar.append("-");
+			} else if (i == barSign) {
+				bar.append(">");
+			} else {
+				bar.append(" ");
+			}
+		}
+		bar.append("]");
+		return bar.toString();
+	}
+	
+}
+
