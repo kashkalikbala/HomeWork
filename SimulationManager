@@ -1,0 +1,34 @@
+package CIF_am5827_HW2;
+
+import CIF_am5827_HW2.PayOut.PayOut;
+import CIF_am5827_HW2.StockPath.*;
+import CIF_am5827_HW2.util.ProgressBar;
+import CIF_am5827_HW2.util.StatCollector;
+import org.apache.commons.math3.distribution.NormalDistribution;
+
+/**
+ * A class to do the simulation with a static function simulate
+ * @author Alim Mijit 
+ */
+public class SimulationManager {
+
+	public static double simulate(StockPath pathes, PayOut payOut, StatCollector stat, double accuPoss, double accuRate) {
+		//compute the needed bound for variance using Central Limit Theorem.
+		double bound = - new NormalDistribution().inverseCumulativeProbability( (1 - accuPoss) / 2 ) ;
+		
+		
+		//Begin the simulation process.
+		for (int i=1; i<30000000; i++) {
+			stat.add( payOut.getPayout(pathes) );
+			double estEnding = bound * stat.getStdVar()/accuRate;
+			if (i % 100000== 0)
+				System.out.print(ProgressBar.showBarByPoint(i, estEnding*estEnding, 100)+"\r");
+			if (bound * stat.getStdVar()/ Math.sqrt(i) < accuRate /* stat.getMean() */&& i >20) {
+				System.out.print("The result by Alim for HomeWork2:\r");
+				System.out.println(i+" simulations to converge.");
+				break;
+			}
+		}
+		return stat.getMean();
+	}
+}
