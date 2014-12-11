@@ -1,0 +1,55 @@
+package CIF_am5827_HW2.RandomVectorGenerator;
+
+import org.apache.commons.math3.random.*;
+
+/**
+ * The class generate the uncorrelated normal random vector with UncorrelatedRandomVectorGenerator
+ * 
+ * @author Alim Mijit
+ */
+public class NormalRandomVectorGenerator implements RandomVectorGenerator {
+	
+	private UncorrelatedRandomVectorGenerator generator;
+	private double[] mean;
+	private double[] var;
+	private int dimension;
+	
+
+	
+	public NormalRandomVectorGenerator(int dimension) {
+		this(dimension, (int) System.currentTimeMillis());
+	 }
+	
+
+	public NormalRandomVectorGenerator(int dimension, int seed) {
+		this.dimension = dimension;
+		RandomGenerator rg = new JDKRandomGenerator();
+		rg.setSeed(seed);  // Fixed seed means same results every time
+		// Create a GassianRandomGenerator using rg as its source of randomness
+		GaussianRandomGenerator rawGenerator = new GaussianRandomGenerator(rg);
+		// Create a CorrelatedRandomVectorGenerator using rawGenerator for the components
+		this.generator = 
+		    new  UncorrelatedRandomVectorGenerator(this.dimension, rawGenerator);
+	}
+	
+
+	public NormalRandomVectorGenerator(double[] mean, double[] var, int seed) {
+		this.mean = mean;
+		this.var = var;
+		RandomGenerator rg = new JDKRandomGenerator();
+		rg.setSeed(seed);  // Fixed seed means same results every time
+		// Create a GassianRandomGenerator using rg as its source of randomness
+		GaussianRandomGenerator rawGenerator = new GaussianRandomGenerator(rg);
+
+		// Create a CorrelatedRandomVectorGenerator using rawGenerator for the components
+		this.generator = 
+		    new  UncorrelatedRandomVectorGenerator(this.mean, this.var, rawGenerator);
+	}
+	
+	
+	@Override
+	public double[] getVector() { 
+		return generator.nextVector();
+	}
+
+}
