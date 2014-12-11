@@ -1,0 +1,55 @@
+package CIF_am5827_HW2.StockPath;
+
+import CIF_am5827_HW2.RandomVectorGenerator.AntitheticRandomVectorGenerator;
+import CIF_am5827_HW2.RandomVectorGenerator.NormalRandomVectorGenerator;
+import CIF_am5827_HW2.RandomVectorGenerator.RandomVectorGenerator;
+import CIF_am5827_HW2.util.Option;
+import CIF_am5827_HW2.util.PriceNode;
+
+import java.util.ArrayList;
+import java.util.List;
+import org.joda.time.DateTime;
+/**
+ * This class is an implementation of StockPath to generate geometric brownian motion stock prices
+ * @author Alim Mijit
+ * 
+ */
+public class BrownianStockPath implements StockPath {
+	
+	private RandomVectorGenerator generator;
+	private Option option;
+	private ArrayList<PriceNode> path;
+	public BrownianStockPath (Option option, RandomVectorGenerator generator) {
+		this.generator = generator;
+		this.option = option;
+		this.generateNewPath();
+	}
+	public BrownianStockPath (Option option) {
+		RandomVectorGenerator normGenerator = new NormalRandomVectorGenerator(option.getPeriod().getDays());
+		RandomVectorGenerator generator = new AntitheticRandomVectorGenerator(normGenerator);
+		this.generator = generator;
+		this.option = option;
+		this.generateNewPath();
+	}
+
+	@Override
+	public List<PriceNode> getPrices() {
+		this.generateNewPath();
+		return path;
+	}
+	
+	public void generateNewPath() {
+		this.path = new ArrayList<PriceNode>();
+		this.path.add(new PriceNode(option.getInitialTime(),option.getInitialPrice()));
+		double[] eta = generator.getVector();
+		double St = option.getInitialPrice();
+		DateTime t = option.getInitialTime();
+		for(int i=0; i<eta.length;i++) {
+			t = t.plusDays(1);
+			double volatility = option.getVolatility();
+			St = St * Math.exp((option.getInterestRate() - volatility*volatility/2)+volatility*eta[i]);
+			this.path.add(new PriceNode(t,St));
+		}
+	}
+	
+}
