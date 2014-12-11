@@ -1,0 +1,30 @@
+package CIF_am5827_HW2.RandomVectorGenerator;
+
+/**
+ * This is a decorator of RandomVectorGenerator for the antithetic trick of Monte Carlo simulation.
+ * @author Alim Mijit
+ * 
+ */
+public class AntitheticRandomVectorGenerator implements RandomVectorGenerator {
+	private RandomVectorGenerator generator;
+	private Boolean flag = false;
+	private double[] oldVector;
+	public AntitheticRandomVectorGenerator(RandomVectorGenerator generator) {
+		this.generator = generator;
+	}
+	
+	@Override
+	public double[] getVector() { 
+		if (flag) {
+			flag = false;
+			for (int i=0; i<oldVector.length; i++) {
+				oldVector[i] *= -1;
+			}
+		} else {
+			flag = true;
+			oldVector = generator.getVector();	
+		}
+		return this.oldVector;	
+	}
+
+}
