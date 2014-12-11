@@ -1,0 +1,13 @@
+package CIF_am5827_HW2.StockPath;
+
+import CIF_am5827_HW2.util.PriceNode;
+
+import java.util.List;
+
+/**
+ *  The interface for creating StockPath. The returned list should be ordered by date
+ * @author Alim Mijit
+ */
+public interface StockPath{
+	  public List<PriceNode> getPrices();
+}
