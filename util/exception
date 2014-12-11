@@ -1,0 +1,10 @@
+package CIF_am5827_HW2.exception;
+
+public class EmptyPathException extends Exception {
+	private static final long serialVersionUID = 1L;
+
+	public EmptyPathException(String mess)
+	    {
+	        super(mess);
+	    }
+}
