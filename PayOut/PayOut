@@ -1,0 +1,6 @@
+package CIF_am5827_HW2.PayOut;
+
+import CIF_am5827_HW2.StockPath.StockPath;
+public interface PayOut{
+	   public double getPayout(StockPath path) ;
+}
