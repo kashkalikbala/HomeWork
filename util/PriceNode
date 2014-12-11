@@ -1,0 +1,45 @@
+package CIF_am5827_HW2.util;
+import org.joda.time.DateTime;
+
+/**
+ * A PriceNode is a class contains the price of option and corresponding datetime.
+ * @author Alim Mijiti
+ */
+public class PriceNode {
+	
+	private DateTime time;
+	
+	private double price;
+	
+	
+	public PriceNode(DateTime time, double price){
+		this.time = time;
+		this.price = price;
+	}
+	
+	
+	
+	public DateTime getTime() {
+		return time;
+	}
+
+
+	
+	public void setTime(DateTime time) {
+		this.time = time;
+	}
+
+
+	public double getPrice() {
+		return price;
+	}
+
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+
+
+
+}
