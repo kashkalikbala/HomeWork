@@ -1,0 +1,134 @@
+package CIF_am5827_HW2.util;
+import org.joda.time.DateTime;
+import org.joda.time.Period;
+
+public class Option {
+	
+	private String name;
+	
+	private double initialPrice;
+	
+	private DateTime initialTime;
+	
+	private DateTime expirationTime;
+	
+	private double interestRate;
+	
+	private double volatility;
+	
+	private double strikePrice;
+	
+	private Period period;
+	
+	private String payOutType;
+
+
+	public Option() {
+		
+	}
+	
+	public Option(String name, String payOutType, double initialPrice, DateTime initialTime, Period period, double interestRate, double volatility, double strickPrice) {
+		this.setInitialPrice(initialPrice);
+		this.setInitialTime(initialTime);
+		this.setInterestRate(interestRate);
+		this.setVolatility(volatility);
+		this.setStrickPrice(strickPrice);
+		this.setPeriod(period);
+		this.setExpirationTime(initialTime.plus(getPeriod()));
+		this.setName(name);
+		this.setPayOutType(payOutType);
+	}
+
+	public Option(double initialPrice, DateTime initialTime, DateTime expirationTime, double interestRate, double volatility, double strickPrice) {
+		this.setInitialPrice(initialPrice);
+		this.setInitialTime(initialTime);
+		this.setInterestRate(interestRate);
+		this.setVolatility(volatility);
+		this.setStrickPrice(strickPrice);
+		this.setExpirationTime(expirationTime);
+		this.setPeriod(new Period(initialTime,expirationTime));
+		
+	}
+
+	
+	public double getInitialPrice() {
+		return initialPrice;
+	}
+
+	
+	public void setInitialPrice(double initialPrice) {
+		this.initialPrice = initialPrice;
+	}
+
+	
+	public DateTime getInitialTime() {
+		return initialTime;
+	}
+
+	
+	public void setInitialTime(DateTime initialTime) {
+		this.initialTime = initialTime;
+	}
+
+	
+	public DateTime getExpirationTime() {
+		return expirationTime;
+	}
+
+	
+	public void setExpirationTime(DateTime expirationTime) {
+		this.expirationTime = expirationTime;
+	}
+
+	
+	public double getInterestRate() {
+		return interestRate;
+	}
+
+	
+	public void setInterestRate(double interestRate) {
+		this.interestRate = interestRate;
+	}
+
+	
+	public double getVolatility() {
+		return volatility;
+	}
+
+	
+	public void setVolatility(double volatility) {
+		this.volatility = volatility;
+	}
+
+	
+	public double getStrickPrice() {
+		return strikePrice;
+	}
+
+	
+	public void setStrickPrice(double strickPrice) {
+		this.strikePrice = strickPrice;
+	}
+
+	
+	public Period getPeriod() {
+		return period;
+	}
+
+	
+	public void setPeriod(Period period) {
+		this.period = period;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getPayOutType() {
+		return payOutType;
+	}
+	public void setPayOutType(String payOutType) {
+		this.payOutType = payOutType;
+	}
+}
