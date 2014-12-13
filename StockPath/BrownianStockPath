@@ -1,10 +1,10 @@
-package CIF_am5827_HW2.StockPath;
-
-import CIF_am5827_HW2.RandomVectorGenerator.AntitheticRandomVectorGenerator;
-import CIF_am5827_HW2.RandomVectorGenerator.NormalRandomVectorGenerator;
-import CIF_am5827_HW2.RandomVectorGenerator.RandomVectorGenerator;
-import CIF_am5827_HW2.util.Option;
-import CIF_am5827_HW2.util.PriceNode;
+package CIF_am5827_HW6.StockPath;
+// 
+import CIF_am5827_HW6.RandomVectorGenerator.AntitheticRandomVectorGenerator;
+import CIF_am5827_HW6.RandomVectorGenerator.NormalRandomVectorGenerator;
+import CIF_am5827_HW6.RandomVectorGenerator.RandomVectorGenerator;
+import CIF_am5827_HW6.util.Option;
+import CIF_am5827_HW6.util.PriceNode;
 
 import java.util.ArrayList;
 import java.util.List;
