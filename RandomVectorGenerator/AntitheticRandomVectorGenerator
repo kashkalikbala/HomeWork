@@ -1,4 +1,4 @@
-package CIF_am5827_HW2.RandomVectorGenerator;
+package CIF_am5827_HW6.RandomVectorGenerator;
 
 /**
  * This is a decorator of RandomVectorGenerator for the antithetic trick of Monte Carlo simulation.
