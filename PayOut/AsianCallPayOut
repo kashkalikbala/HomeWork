@@ -1,8 +1,8 @@
-package CIF_am5827_HW2.PayOut;
+package CIF_am5827_HW6.PayOut;
 
-import CIF_am5827_HW2.StockPath.StockPath;
-import CIF_am5827_HW2.util.Option;
-import CIF_am5827_HW2.util.PriceNode;
+import CIF_am5827_HW6.StockPath.StockPath;
+import CIF_am5827_HW6.util.Option;
+import CIF_am5827_HW6.util.PriceNode;
 
 import java.util.List;
 
