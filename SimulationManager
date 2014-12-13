@@ -1,9 +1,9 @@
-package CIF_am5827_HW2;
+package CIF_am5827_HW\6;
 
-import CIF_am5827_HW2.PayOut.PayOut;
-import CIF_am5827_HW2.StockPath.*;
-import CIF_am5827_HW2.util.ProgressBar;
-import CIF_am5827_HW2.util.StatCollector;
+import CIF_am5827_HW6.PayOut.PayOut;
+import CIF_am5827_HW6.StockPath.*;
+import CIF_am5827_HW6.util.ProgressBar;
+import CIF_am5827_HW6.util.StatCollector;
 import org.apache.commons.math3.distribution.NormalDistribution;
 
 /**
